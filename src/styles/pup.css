@@ -1,0 +1,10 @@
+.child{
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.child img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}

@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
+import {Button, Card} from 'react-bootstrap/Button';
+import {Link, useParams } from 'react-router-dom'
+import "../styles/mainPage.css"
 
 
-
-
+const URL = 'https://fsa-puppy-bowl.herokuapp.com/api/2211-ftb-et-web-am/players';
 
 const RenderPuppies = () => {
-    const [puppies, setPuppies] = useState ([])
+    const [puppies, setPuppies] = useState ([]);
+    // const [puppy, setPuppy]= useState
+    const handleChange = (event)=> {
+        setPuppies(event.target.value);
+    }
 
     useEffect ( ()=>{
        fetchPuppies()
@@ -14,7 +20,7 @@ const RenderPuppies = () => {
     )
     const fetchPuppies = async ()=>{
         try{
-            const response = await fetch('https://fsa-puppy-bowl.herokuapp.com/api/2211-ftb-et-web-am/players')
+            const response = await fetch(URL)
             const puppyResult = await response.json()
             // console.log(puppyResult.data.players)
             setPuppies(puppyResult.data.players)
@@ -24,27 +30,39 @@ const RenderPuppies = () => {
            return "oh this didnt work"
         }    
     }
-    
 
-// console.log(puppies, 'this is a test')
-    return (
-        puppies.map((puppy)=> {
-            // console.log(puppy.name)
-            return(
-                <div key ={puppy.name}>
+    const puppiesList = puppies.map(puppy =>{
+        return(
+            <div className="puppy" key ={puppy.name}>
                 <h1 className = "pupName">{puppy.name}</h1>
                 <img className = "pupImg" src={puppy.imageUrl}></img>
-                <button onChange = {handleChange} >See Details</button>
-                </div>
+                <Link to={`/pup/${puppy.id}`}><button>See Details </button></Link>
+                
+            </div>
+        )
+    })
+       
 
-            )
-        }) 
+
+    
+// console.log(puppies, 'this is a test')
+    return (
+      <div className="container">
+        {puppiesList}
+      </div>
+       
           
     )
 }
-const handleChange = (event) => {
-    console.log("Puppy Event", event)
+
+// const handleChange = async (renderPup) => {
+    
+    // const URL = await fetchSinglePup();
+    // event.preventDefault();
+    // console.log("Puppy Event", renderPup)
+
     // setState({name:event.target.value });
-}
-handleChange()
+// }
+// fetchSinglePup();
+//handleChange()
 export default RenderPuppies;
