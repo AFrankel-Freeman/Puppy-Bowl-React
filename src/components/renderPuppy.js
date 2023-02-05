@@ -24,20 +24,27 @@ const RenderPuppies = () => {
            return "oh this didnt work"
         }    
     }
+    
 
-
-console.log(puppies, 'this is a test')
+// console.log(puppies, 'this is a test')
     return (
         puppies.map((puppy)=> {
-            console.log(puppy.name)
+            // console.log(puppy.name)
             return(
-                <div>
-                <h1 class = "pupName">{puppy.name}</h1>
-                <img class = "pupImg" src={puppy.imageUrl}></img>
+                <div key ={puppy.name}>
+                <h1 className = "pupName">{puppy.name}</h1>
+                <img className = "pupImg" src={puppy.imageUrl}></img>
+                <button onChange = {handleChange} >See Details</button>
                 </div>
 
-        )
-    })
+            )
+        }) 
+          
     )
 }
+const handleChange = (event) => {
+    console.log("Puppy Event", event)
+    // setState({name:event.target.value });
+}
+handleChange()
 export default RenderPuppies;
