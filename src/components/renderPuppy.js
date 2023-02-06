@@ -8,28 +8,27 @@ import "../styles/mainPage.css"
 export const URL = 'https://fsa-puppy-bowl.herokuapp.com/api/2211-ftb-et-web-am/players';
 
 const RenderPuppies = (props) => {
-    const [puppies, setPuppies] = useState ([]);
     const handleChange = (event)=> {
-        setPuppies(event.target.value);
+        props.setPuppies(event.target.value);
     }
 
     useEffect ( ()=>{
-       fetchPuppies(props)
-    },[props]
-    )
-    const fetchPuppies = async ()=>{
-        try{
-            const response = await fetch(URL)
-            const puppyResult = await response.json()
-            setPuppies(puppyResult.data.players)
-            
+        const fetchPuppies = async ()=>{
+            try{
+                const response = await fetch(URL)
+                const puppyResult = await response.json()
+                props.setPuppies(puppyResult.data.players)
+                
+            }
+            catch(err){
+               return "oh this didnt work"
+            }    
         }
-        catch(err){
-           return "oh this didnt work"
-        }    
-    }
-
-    const puppiesList = puppies.map(puppy =>{
+    
+       fetchPuppies()
+    },[])
+   
+    const puppiesList = props.puppies.map(puppy =>{
         return(
             <div className="puppy" key ={puppy.name}>
                 <h1 className = "pupName">{puppy.name}</h1>

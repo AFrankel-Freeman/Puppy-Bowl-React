@@ -19,8 +19,6 @@ const pupInfo= ()=> {
             try{
                 const response = await fetch(URL)
                 const puppyResult = await response.json()
-                console.log(puppyResult)
-                // console.log(puppyResult.data.players)
                 setPup(puppyResult.data.player)
                 
             }
