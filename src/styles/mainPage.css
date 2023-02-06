@@ -3,12 +3,20 @@
     flex-wrap: wrap;
     gap: 20px;
     margin: 20px auto;
+    
 
+}
+
+.container .pupName{
+    align-items: center;
 }
 
 
 .container > .puppy{
     width: 30%;
+    border-style: solid;
+    border-color: rgba(255, 166, 0, 0.493); 
+    padding:5px;
 }
 
 .container > .puppy img{

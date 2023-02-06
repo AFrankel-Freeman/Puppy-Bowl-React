@@ -5,24 +5,22 @@ import {Link, useParams } from 'react-router-dom'
 import "../styles/mainPage.css"
 
 
-const URL = 'https://fsa-puppy-bowl.herokuapp.com/api/2211-ftb-et-web-am/players';
+export const URL = 'https://fsa-puppy-bowl.herokuapp.com/api/2211-ftb-et-web-am/players';
 
-const RenderPuppies = () => {
+const RenderPuppies = (props) => {
     const [puppies, setPuppies] = useState ([]);
-    // const [puppy, setPuppy]= useState
     const handleChange = (event)=> {
         setPuppies(event.target.value);
     }
 
     useEffect ( ()=>{
-       fetchPuppies()
-    },[]
+       fetchPuppies(props)
+    },[props]
     )
     const fetchPuppies = async ()=>{
         try{
             const response = await fetch(URL)
             const puppyResult = await response.json()
-            // console.log(puppyResult.data.players)
             setPuppies(puppyResult.data.players)
             
         }
@@ -55,14 +53,4 @@ const RenderPuppies = () => {
     )
 }
 
-// const handleChange = async (renderPup) => {
-    
-    // const URL = await fetchSinglePup();
-    // event.preventDefault();
-    // console.log("Puppy Event", renderPup)
-
-    // setState({name:event.target.value });
-// }
-// fetchSinglePup();
-//handleChange()
 export default RenderPuppies;

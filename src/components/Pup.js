@@ -33,10 +33,10 @@ const pupInfo= ()=> {
 
     return(
         <div className="child">
-        <h2>{pup.name}</h2>
+        <h2 className ="pupName">{pup.name}</h2>
             <img src={pup.imageUrl} alt="image"/>
             <p>Breed - {pup.breed}</p>
-            <Link to="/"><button>Home</button></Link>
+            <Link to="/"><button className="home">Home</button></Link>
             
         </div>
     )

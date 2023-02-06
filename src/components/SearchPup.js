@@ -1,15 +1,53 @@
-// import React, {useState, useEffect} from 'react';
-// import { createRoot } from 'react-dom/client';
-// import {Button, Card} from 'react-bootstrap/Button';
+import React, {useState, useEffect} from 'react';
+import ReactDOM from 'react-dom/client';
+import pupInfo from './Pup';
+import RenderPuppies from './RenderPuppy';
 
-const SearchPup = () => {
-    const [pupName, setPupName] = useState ([]);
-        return(
-            <form>
-            <input type = "text">Puppy Name</input>
-            <button type = "submit" onclick = {response.json}> Search</button>
-            </form>
-        )
+RenderPuppies()
+const AddNewPup = ()=> {
+    const [newPup, setNewPup] = useState ([]);
+    const [nameOfNewPup, setNameOfNewPup ] = useState("");
+    const [breedOfNewPup, setBreedOfNewPup] = useState ("");
+
+    
+    // const submitPup = (event) => {
+    //     event.preventDefault();
+    //     setNewPup(newPup);
+    // }
+
+    const handleNameSubmit = (event) =>{
+        console.log(event.target.value);
+        setNameOfNewPup(event.target.value);
+    }
+    const handleBreedSubmit = (event) =>{
+        console.log(event.target.value)
+        setBreedOfNewPup(event.target.value);
+    }
+   const submitForm = (event) => {
+        event.preventDefault();
+        setPuppies([...puppies, {
+            name:nameOfNewPup,
+            breed:breedOfNewPup
+
+            
+        }]);
+
+   }
+
+return(
+
+    <form onSubmit= {submitForm}>
+        <label>Name: </label>
+        <input type = "text" value = {nameOfNewPup} onChange={handleNameSubmit}></input>
+        <label>Breed: </label>
+        <input type = "text" value = {breedOfNewPup} onChange = {handleBreedSubmit}></input>
+        <button type="submit" >Submit</button>
+    </form>
+)
 }
-SearchPup()
-export default SearchPup 
+
+export default AddNewPup
+
+// useEffect(()=>{
+//     setNewPup(URL);
+//     }, []);

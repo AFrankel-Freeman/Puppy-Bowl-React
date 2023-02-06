@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import  {createRoot} from 'react-dom/client';
 import RenderPuppies from "./components/RenderPuppy";
 import Pup from './components/Pup';
 import { BrowserRouter as Router, Routes, Switch, Route, useParams } from 'react-router-dom'
-
-// import SearchPup from "./components/SearchPup";
+import AddNewPup from './components/SearchPup';
 
 
 
 const Init = () => {
     return (
+        <div>
+        <AddNewPup />
         <Router>
         <Routes>
         <Route  path="/" element={<RenderPuppies/>}/>
@@ -20,10 +21,12 @@ const Init = () => {
         
         
         </Router>
-       
+        </div>
         )
+        
 };
 Init()
+
 
 const appElement = document.getElementById("app");
 const root = createRoot (appElement);
